@@ -29,6 +29,10 @@
         <activity
             android:name=".ForGeo"
             android:exported="true" />
+
+        <activity
+            android:name=".Forgrid"
+            android:exported="true" />
     </application>
 
 </manifest>
