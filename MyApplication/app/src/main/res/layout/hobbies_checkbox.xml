@@ -30,7 +30,7 @@
         android:id="@+id/cbCoding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Coding & Programming"
+        android:text="Coding &amp; Programming"
         android:textSize="18sp"
         android:padding="8dp" />
 
