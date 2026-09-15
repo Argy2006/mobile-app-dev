@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class Forcheckbox extends AppCompatActivity {
 
-    CheckBox cbCoding, cbGaming, cbMusic, cbReading, cbSports, cbTraveling;
+    CheckBox cbCoding, cbGaming, cbMusic, cbReading, cbSports, cbTraveling, cbTerms;
     Button btnSubmitHobbies;
     TextView tvSelectedHobbies;
 
@@ -28,9 +29,21 @@ public class Forcheckbox extends AppCompatActivity {
         cbReading = findViewById(R.id.cbReading);
         cbSports = findViewById(R.id.cbSports);
         cbTraveling = findViewById(R.id.cbTraveling);
+        cbTerms = findViewById(R.id.cbTerms);
 
         btnSubmitHobbies = findViewById(R.id.btnSubmitHobbies);
         tvSelectedHobbies = findViewById(R.id.tvSelectedHobbies);
+
+        // Initially disable submit button until terms checkbox is checked
+        btnSubmitHobbies.setEnabled(cbTerms.isChecked());
+
+        // Toggle submit button state when terms checkbox changes
+        cbTerms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                btnSubmitHobbies.setEnabled(isChecked);
+            }
+        });
 
         btnSubmitHobbies.setOnClickListener(new View.OnClickListener() {
             @Override
