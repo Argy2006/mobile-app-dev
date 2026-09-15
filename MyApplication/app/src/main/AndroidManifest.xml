@@ -48,6 +48,14 @@
         <activity
             android:name=".Forcons"
             android:exported="true" />
+
+        <activity
+            android:name=".ForFragment"
+            android:exported="true" />
+
+        <activity
+            android:name=".Forcheckbox"
+            android:exported="true" />
     </application>
 
 </manifest>
