@@ -62,7 +62,15 @@
             android:exported="true" />
 
         <activity
+            android:name=".ForWelcome"
+            android:exported="true" />
+
+        <activity
             android:name=".Forcard"
+            android:exported="true" />
+
+        <activity
+            android:name=".For_fab"
             android:exported="true" />
     </application>
 
