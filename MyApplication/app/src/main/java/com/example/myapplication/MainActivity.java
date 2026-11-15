@@ -1,71 +1,90 @@
 package com.example.myapplication;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
 
-    private static final int REQUEST_CALL_PERMISSION = 1;
-    EditText letNumber;
-    Button btnOpen;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+    private TextView tvMainContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        letNumber = findViewById(R.id.letNumber);
-        btnOpen = findViewById(R.id.btnOpen);
+        // Bind Views
+        drawerLayout = findViewById(R.id.drawerlayout);
+        navigationView = findViewById(R.id.navView);
+        toolbar = findViewById(R.id.toolbar);
+        tvMainContent = findViewById(R.id.tvMainContent);
 
-        btnOpen.setOnClickListener(new View.OnClickListener() {
+        // Set Toolbar as ActionBar
+        setSupportActionBar(toolbar);
+
+        // Configure ActionBarDrawerToggle (hamburger icon animation & state sync)
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.app_name,
+                R.string.app_name
+        );
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Listen for navigation item selections
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_home);
+
+        // Handle System Back Button Press (Closes drawer if open)
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
-            public void onClick(View v) {
-                String phoneNumber = letNumber.getText().toString().trim();
-
-                if (!phoneNumber.isEmpty()) {
-                    makePhoneCall(phoneNumber);
+            public void handleOnBackPressed() {
+                if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
                 } else {
-                    Toast.makeText(MainActivity.this, "Please enter a phone number", Toast.LENGTH_SHORT).show();
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
                 }
             }
         });
     }
 
-    private void makePhoneCall(String phoneNumber) {
-        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
-        } else {
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-            startActivity(intent);
-        }
-    }
-
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CALL_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                String phoneNumber = letNumber.getText().toString().trim();
-                if (!phoneNumber.isEmpty()) {
-                    makePhoneCall(phoneNumber);
-                }
-            } else {
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
-            }
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            tvMainContent.setText("You are on the Home Screen");
+            Toast.makeText(this, "Home Selected", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_profile) {
+            tvMainContent.setText("You are on the Profile Screen");
+            Toast.makeText(this, "Profile Selected", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_settings) {
+            tvMainContent.setText("You are on the Settings Screen");
+            Toast.makeText(this, "Settings Selected", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_about) {
+            tvMainContent.setText("You are on the About Screen");
+            Toast.makeText(this, "About Selected", Toast.LENGTH_SHORT).show();
         }
+
+        // Close drawer smoothly after selection
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

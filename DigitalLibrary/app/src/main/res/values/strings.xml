@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Digital Library</string>
+    <string name="currently_borrowed_format">Currently borrowed: %1$d / 3</string>
+    <string name="search_hint">Search by title…</string>
+    <string name="no_books_found">No books found</string>
+    <string name="view_details">View Details</string>
+    <string name="menu_my_borrowed">My Borrowed Books</string>
+    <string name="menu_sort_az">Sort A-Z</string>
+    <string name="menu_about">About</string>
+    <string name="menu_exit">Exit</string>
+    <string name="category_all">All Categories</string>
+    <string name="category_programming">Programming</string>
+    <string name="category_fiction">Fiction</string>
+    <string name="category_science">Science</string>
+    <string name="category_business">Business</string>
+    <string name="availability_all">All Books</string>
+    <string name="availability_available">Available</string>
+    <string name="availability_borrowed">Borrowed</string>
+    <string name="borrow_book">Borrow Book</string>
+    <string name="return_book">Return Book</string>
+    <string name="status_available_text">Available</string>
+    <string name="status_borrowed_text">Borrowed</string>
+    <string name="about_title">About Digital Library</string>
+    <string name="about_message">Digital Library App v1.0\nPhase 2 Implementation\nBuilt with Java and XML.</string>
+    <string name="exit_title">Exit App</string>
+    <string name="exit_message">Are you sure you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="title_borrowed_books">My Borrowed Books</string>
+    <string name="no_borrowed_books_msg">You haven’t borrowed any books yet. Go back to the catalog and borrow one!</string>
+
+    <!-- Phase 2 strings -->
+    <string name="dialog_confirm_borrow_title">Confirm Borrowing</string>
+    <string name="dialog_confirm_borrow_msg">Do you want to borrow \"%1$s\"?</string>
+    <string name="dialog_confirm_return_title">Confirm Return</string>
+    <string name="dialog_confirm_return_msg">Do you want to return \"%1$s\"?</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_book_not_found">Book not found or ID is missing.</string>
+    <string name="dialog_limit_reached_title">Limit Reached</string>
+    <string name="dialog_limit_reached_msg">You cannot borrow more than 3 books at a time.</string>
+    <string name="dialog_unavailable_msg">This book is currently unavailable.</string>
+    <string name="text_unavailable_notice">This book is currently unavailable.</string>
+    <string name="button_back">Back</string>
+    <string name="button_confirm">Confirm</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_ok">OK</string>
+    <string name="toast_borrow_success">Successfully borrowed \"%1$s\"!</string>
+    <string name="toast_return_success">Successfully returned \"%1$s\"!</string>
+</resources>
