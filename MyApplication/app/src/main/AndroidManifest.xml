@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -82,6 +83,14 @@
 
         <activity
             android:name=".Fornavigationdrawer"
+            android:exported="true" />
+
+        <activity
+            android:name=".ForWifiState"
+            android:exported="true" />
+
+        <activity
+            android:name=".ForAirplaneMode"
             android:exported="true" />
     </application>
 
